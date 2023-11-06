@@ -1,4 +1,4 @@
--- Question 1
+-- Question 1 
 -- What are the total sales in different seasons (S1 - S4) from year 2017 to 2020?
 SELECT
 d.year, 

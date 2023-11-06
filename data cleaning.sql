@@ -1,5 +1,5 @@
 -- There are three tasks to do in data cleaning part, which are:
--- 1. Delete the rows where sales_amount and sales_qty are less than and equal to 0
+-- 1. Delete the rows where sales_amount and sales_qty are less than and equal to 0 
 -- 2. Fix the typos of column names
 -- 3. Change all sales_amount to INR currency
 SELECT * FROM sales.transactions;
