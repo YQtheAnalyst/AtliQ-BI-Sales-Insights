@@ -34,6 +34,7 @@ RENAME COLUMN
 
 -- ------------------------Task 3------------------------------------
 
+-- Identify the rows where currency is not inaccurate
 SELECT DISTINCT 
   currency 
 FROM 
@@ -95,12 +96,13 @@ WHERE
 -- What is the average revenue per customer in each zone? What can you learn about related to customer behaviour?
 
 -- ------------------------Task 0.0------------------------------------
--- Create new column where Revenue = sales Quantity * Normalized Sales Amount
+-- Create new column for further calculation purpose
 ALTER TABLE 
   sales.transactions
 ADD 
   revenue double;
 
+-- Calculate Revenue = sales Quantity * Normalized Sales Amount
 UPDATE 
   sales.transactions
 SET 
@@ -130,7 +132,7 @@ LEFT JOIN
 
 -- ------------------------Task 1------------------------------------
 -- Which marketing zone has the highest revenue?
--- Calculate the total revenue in each zone/ city
+-- Calculate the total revenue of each zone
 SELECT
 	zone,
 	SUM(revenue) AS total_revenue
@@ -142,6 +144,7 @@ ORDER BY
 	revenue ASC
 ;
 
+-- Calculate the total revenue of each city
 SELECT
 	markets_name,
 	SUM(revenue) AS total_revenue
@@ -156,9 +159,10 @@ ORDER BY
 
 -- ------------------------Task 2------------------------------------
 -- Which customer contribute to the highest revenue in different zones?
+-- Calculate the total revenue of each zone, each customer
 SELECT
 	zone,
-    customer_name,
+  customer_name,
 	SUM(revenue) AS total_revenue
 FROM
 	all_transaction
@@ -171,12 +175,13 @@ ORDER BY
 
 -- ------------------------Task 3------------------------------------
 -- What is the sales growth per quarter from 2017 to 2022? What about it in different zones?
+-- Create the table calculating the total revenue of each zone, per quarter
 CREATE TABLE 
   sales_quarter
 SELECT
 	d.year,
 	SUM(t.revenue) AS total_revenue,
-    t.zone,
+  t.zone,
 	CASE
 		WHEN d.month_name = "June" 
       OR d.month_name = "July" 
@@ -201,6 +206,7 @@ GROUP BY
 
 -- ------------------------Task 4------------------------------------
 -- What is the average revenue per customer in each zone? What can you learn about related to customer behaviour?
+-- Create the table calculating the average sales amount / quantity of each zone, per customer
 CREATE TABLE 
   avg_sales_customer
 SELECT
