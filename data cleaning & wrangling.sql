@@ -93,7 +93,7 @@ WHERE
 -- 1. Which marketing zone has the highest revenue?
 -- 2. Which customer contribute to the highest revenue in different zones?
 -- 3. What is the sales growth per quarter from 2017 to 2022? What about it in different zones?
--- What is the average revenue per customer in each zone? What can you learn about related to customer behaviour?
+-- 4. What is the average revenue per customer in each zone? What can you learn about related to customer behaviour?
 
 -- ------------------------Task 0.0------------------------------------
 -- Create new column for further calculation purpose

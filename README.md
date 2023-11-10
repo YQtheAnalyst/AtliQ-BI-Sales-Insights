@@ -1,6 +1,7 @@
 # Sales-Insights
 
 This project is under continuous updating...
+Please go to the Tableau Public, https://public.tableau.com/app/profile/yiqing.li7628/vizzes, to see the visualization dashboards.
 
 ### Introduction
 MatCore Hardware is a company which supplies computer hardware and peripherals in India, where the headquarters is located in Delhi. The sales director, Alex, faces lots of challenges including tracking the market sales in this dynamically growing market. However, the information he has is only Excel files with massive numbers, which contain information related to transactions, customers, markets etc.. So, he approached the data analyst team with the requirements that he would like to know about the business insights in different marketing areas -- north, south and central India.
@@ -63,5 +64,4 @@ hoc analysis questions:
 For detail information, please refer to the file (data cleaning & wrangling.sql)
 
 ### Data visualization
-I visualized the business insights in Tableau to uncover the hidden patterns.
-For further information, please refer to the Tableau Public, 
+I visualized the business insights in Tableau to uncover the hidden patterns and answer the questions from hoc analysi.
