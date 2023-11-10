@@ -12,7 +12,7 @@ ORDER BY revenue DESC
 
 
 -- Question 2
-# What are the sales per customer? Who has the highest sales revenue? Which selling type has highest sales revenue?
+-- What are the sales per customer? Who has the highest sales revenue? Which selling type has highest sales revenue?
 SELECT 
 c.customer_name,
 SUM(t.sales_qty*t.norm_sales_amount) AS revenue
