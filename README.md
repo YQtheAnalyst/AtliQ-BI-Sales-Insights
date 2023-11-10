@@ -11,17 +11,18 @@ This project is to analyze the sales insight in different marketing zones, visua
 ### Project Planning
 Utilized AIMS grid to organize this project.
 
-1. Purpose
+1. PURPOSE
+To uncover the sales insights for sales team to support decision making, and to automate them to reduce manal time spend in data gathering.
 
-To uncover the sales insights for the sales team to support decision making, and to automate them to reduce manual time spent in data gathering.
-
-2. Stakeholders
-
+2. STAKEHOLDES
 Sales director, marketing team, customer service team, data & analytics team and IT.
 
-3. End result
+3. END RESULTS
+An automated dashboard and a report provding sales insights in order to support data driven decision making.
 
-An automated dashboard and a report providing sales insights in order to support data-driven decision-making.
+4. SUCCESS CRITERIA
+Dashboard(s) uncovering sales order insights with latest data available.
+Sales team able to take better decision and prove 10% cost savings of total spend.
 
 4. Success critria
 
@@ -30,12 +31,23 @@ The sales team is able to make better decisions and prove 10% cost savings of to
 
 
 ### Data cleaning and wrangling
-Firstly, I performed the data cleaning process to remove and fix inaccurate data with 4 main tasks.
+Firstly, I performed the data cleaning process to remove and fix inaccurate data with 4 main tasks, which included:
 
-Secondly, I performed the data wrangling process, to create new tables for hoc analysis. I also generated 3 performance metrics in this process.
+(1) Identify and delete the rows where sales_amount is less than 0
+(2) Fix the typos of column names
+(3) Change all sales_amount to INR currency
+(4) Delete the Null values in the Markets table
 
-Hoc analysis questions:
+Secondly, I performed the data wrangling process, where I created new columns and converted datasets into another format more suitable for further use.
+(1) Create column Revenue
+(2) Create tables containing two other performance metrics
+(3) Combine multiple tables into one more appropriate form
 
+For further information, please refer to the file (data cleaning & wrangling.sql)
+
+
+### hoc analysis
+This section focuses on preparing data to answer the following questions:
 (1) Which marketing zone has the highest revenue?
 
 (2) Which customers contribute to the highest revenue in different zones?
