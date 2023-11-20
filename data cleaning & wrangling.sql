@@ -87,13 +87,7 @@ WHERE
 
 -- -------------------------------------------------------------------
 -- ------------------------DATA WRANGLING ----------------------------
--- Building tables present 3 performance metrics, as well as answering the following questions:
--- 0.0 Revenue
--- 0.1 Create the new table containing key information
--- 1. Which marketing zone has the highest revenue?
--- 2. Which customer contribute to the highest revenue in different zones?
--- 3. What is the sales growth per quarter from 2017 to 2022? What about it in different zones?
--- 4. What is the average revenue per customer in each zone? What can you learn about related to customer behaviour?
+-- Building tables present 3 performance metrics
 
 -- ------------------------Task 0.0------------------------------------
 -- Create new column for further calculation purpose
@@ -131,7 +125,6 @@ LEFT JOIN
 
 
 -- ------------------------Task 1------------------------------------
--- Which marketing zone has the highest revenue?
 -- Calculate the total revenue of each zone
 SELECT
 	zone,
@@ -158,7 +151,6 @@ ORDER BY
 
 
 -- ------------------------Task 2------------------------------------
--- Which customer contribute to the highest revenue in different zones?
 -- Calculate the total revenue of each zone, each customer
 SELECT
 	zone,
@@ -174,8 +166,7 @@ ORDER BY
 
 
 -- ------------------------Task 3------------------------------------
--- What is the sales growth per quarter from 2017 to 2022? What about it in different zones?
--- Create the table calculating the total revenue of each zone, per quarter
+-- Create the table calculating the total revenue of each zone for each month
 CREATE TABLE 
   sales_quarter
 SELECT
@@ -205,17 +196,19 @@ GROUP BY
 
 
 -- ------------------------Task 4------------------------------------
--- What is the average revenue per customer in each zone? What can you learn about related to customer behaviour?
--- Create the table calculating the average sales amount / quantity of each zone, per customer
+-- Create the table calculating the average sales amount / quantity of each zone
 CREATE TABLE 
   avg_sales_customer
 SELECT
-	zone,
-  customer_name,
-  ROUND(AVG(sales_qty),0) AS avg_sales_qty_percustomer,
-  ROUND(AVG(norm_sales_amount),0) AS avg_sales
+	markets.zone,
+	ROUND(AVG(norm_sales_amount),0) AS avg_sales,
+	ROUND(AVG(sales_qty),0) AS avg_sales_qty
 FROM 
-	all_transaction
+	transactions
+LEFT JOIN 
+  markets ON markets.markets_code = transactions.market_code
+LEFT JOIN 
+  customers ON customers.customer_code = transactions.customer_code
 GROUP BY
-	customer_name
-;    
+	markets.zone
+;
