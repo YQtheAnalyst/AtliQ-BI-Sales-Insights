@@ -2,16 +2,16 @@
 
 ## Table of Contents
 - [Technologies](#technologies)
-- [Business Intelligence](business-intelligence)
-- [Project Planning](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#Project-Planning)
-- [Data Examing & Data Quality Report](https://github.com/YQtheAnalyst/Sales-Insights#data-examing--data-quality-report)
-- [Descriptive Analysis](https://github.com/YQtheAnalyst/Sales-Insights#descriptive-analysis)
--[Data Cleaning & ETL](https://github.com/YQtheAnalyst/Sales-Insights#data-cleaning--etl-extract-transform-load)
-- [Data Modeling](https://github.com/YQtheAnalyst/Sales-Insights#data-modeling)
-- [DAX: Metrics Build](https://github.com/YQtheAnalyst/Sales-Insights#dashboard)
-- [Dashboard](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#Dashboard)
-- [Report](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#Report)
-- [References](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#References-)
+- [Business Intelligence](#business-intelligence)
+- [Project Planning](#Project-Planning)
+- [Data Examing & Data Quality Report](#data-examing--data-quality-report)
+- [Descriptive Analysis](#descriptive-analysis)
+- [Data Cleaning & ETL](#data-cleaning--etl-extract-transform-load)
+- [Data Modeling](#data-modeling)
+- [DAX: Metrics Build](#dashboard)
+- [Dashboard](#Dashboard)
+- [Report](#Report)
+- [References](#References)
 
 ## Technologies
 
@@ -41,19 +41,19 @@ AtliQ Hardware is a company which supplies computer hardware and peripherals to 
 
 - ### The solution
 
-    In order to address the stakeholder's needs, I gathered data from [database](https://codebasics.io/resources/sales-insights-data-analysis-project) and decided what data they have and how it's being used. I found that the following metrics have already been applied:
+    In order to address the stakeholder's needs, I gathered data from [database](https://codebasics.io/resources/sales-insights-data-analysis-project). I found that the following metrics have already been applied:
 
     - Sales quantity
 
     - Revenue
 
-    By comparing the existing metrics, the company can understand the sales insights well. However, I would like to consider more metrics about customer loyalty to better understand customer behaviour in the company. The questions I put forward to help myself think further:
+    By comparing the existing metrics, the company can understand the sales insights well. However, I would like to consider more metrics about customer loyalty to better understand **customer behaviour** in the company. The questions I put forward to help myself think further:
 
     - How much revenue / How many transactions does each customer contribute?
 
     - How many customers will repeat purchasing / does the company has lost?
 
-    These metrics help company to better understand and explore the resaons for sales decrease behind the customer behaviour. I then organize this data within the database systems and deliver it to new tables that report the results for stakeholders to consider as they strategize how to increase sales performance.
+    These metrics help company to explore the resaons for sales decrease behind the customer behaviour. I then organize this data within the database systems and load it to visualization software to generate dashboard and report for stakeholders to consider as they strategize how to increase sales performance.
 
 - ### Results
 
@@ -83,67 +83,65 @@ AtliQ Hardware is a company which supplies computer hardware and peripherals to 
 
 First, I used MySQL to get a general view of the whole database and generate the data quality report for reference. The key points I will be focusing on include data types, count of rows, entries of categorical values, range of numerical values, incorrect values, null values, and so on.
 
-- Data Examing
+### Data Examing
 
-    For the details please refer to [this file]
-
-    - Check the data types and Null values for tables
+- Check the data types and Null values for tables
    
-     `USE sales;`
+    `USE sales;`
 
-     `DESCRIBE transactions;`
+    `DESCRIBE transactions;`
 
-     `SELECT * FROM markets WHERE zone = '';`
+    `SELECT * FROM markets WHERE zone = '';`
 
-    - Check the counts of the rows for tables
+- Check the counts of the rows for tables
 
     `SELECT COUNT(*) FROM transactions;`
 
-    - Check data integrity for categorical columns
+ - Check data integrity for categorical columns
 
     `SELECT COUNT(DISTINCT product_code) FROM transactions;`
 
     `SELECT COUNT(DISTINCT product_code) FROM products;`
 
-    - Check distinct values for categorical column
+- Check distinct values for categorical column
 
     `SELECT DISTINCT currency FROM transactions;`
 
-    - Checked the time period for DATE column
+- Checked the time period for DATE column
 
     `SELECT MIN(order_date), MAX(order_date) FROM transactions;`
 
-    - Check data range for numerical columns
+- Check data range for numerical columns
 
     `SELECT COUNT(sales_amount) FROM transactions WHERE sales_amount <= 0;`
 
-- Data Quality Report
+### Data Quality Report
 
-    - Lack of data in "product_code"
+- Lack of data in "product_code"
 
     I found there are 279 product codes in "product" reference table whilst 339 in "transaction" table. The null value will be generated if I try to JOIN two tables in the future
 
     Suggestion: Gather more information for "product" reference table to ensure data integrity or remove the null product in the following analysis
 
-    - Different currecies "INR" and "USD"
+- Different currecies "INR" and "USD"
 
     Column "Currency" contains two different currencies, "INR" and "USD". It also contains typos, "INR " and "USD "
 
     Suggestion: Data transformation. Re-calculate the sales amount according to "INR" to unify the currency, and correct the typos
 
-    - Negative values in sales amount
+- Negative values in sales amount
 
     Column "sales_amount" in table "transaction" contains negative values, which are incorrect
 
     Suggestions: Delete the rows with negative sales amounts
 
-    - Lack of data in Year 2017 and 2020
+- Lack of data in Year 2017 and 2020
 
     The database only contains data from Oct 2017 to June 2020
 
     Suggestions: Gather more information about Year 2017 and 2020 or analyze the existing data, but ensure to consider the factor of imcomplete data
 
-    - Redundant data in market names
+- Redundant data in market names
 
     Table "markets" include redundant market information "New York" and "Paris" which will not be considered in this analysis
 
@@ -151,18 +149,18 @@ First, I used MySQL to get a general view of the whole database and generate the
 
 ## Descriptive Analysis
 
-- Descriptive analysis
+The following codes present tables to answer the questions I put forward in the section "Business Inteligence, the solution".
 
-    The following codes present tables to answer the questions I put forward in the section "Business Inteligence, the solution". Further analysis related to product types and markets can be accessed in [this file]
+- Check the yearly total revenue and sales quantity for each customer
 
-    Check the yearly total revenue and sales quantity for each customer
+    ```
+    SELECT customer_code, YEAR(order_date), SUM(sales_amount), SUM(sales_qty)
+    FROM transactions
+    GROUP BY customer_code, YEAR(order_date)
+    ORDER BY customer_code;
+    ```
 
-    `SELECT customer_code, YEAR(order_date), SUM(sales_amount), SUM(sales_qty)` 
-    `FROM transactions`
-    `GROUP BY customer_code, YEAR(order_date)`
-    `ORDER BY customer_code;`
-
-    Count transaction times every year for each customer
+- Count transaction times every year for each customer
 
     `SELECT c.custmer_name, YEAR(t.order_date) AS year, COUNT(*) AS transaction_times`
     `FROM transactions AS t`
@@ -170,7 +168,7 @@ First, I used MySQL to get a general view of the whole database and generate the
     `GROUP BY t.customer_code, YEAR(t.order_date)`
     `ORDER BY c.custmer_name;`
 
-    Count the total number of customers every year
+- Count the total number of customers every year
 
     `SELECT YEAR(order_date) AS year, COUNT(*) AS transaction_times`
     `FROM transactions`
@@ -178,7 +176,7 @@ First, I used MySQL to get a general view of the whole database and generate the
 
 ## Data Cleaning & ETL (Extract, Transform, Load)
 
- - Data Loading
+- Data Loading
 
     Connect the MySQL server to the Power BI desktop, and load database
 
