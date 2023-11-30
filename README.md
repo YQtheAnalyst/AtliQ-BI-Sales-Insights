@@ -185,8 +185,10 @@ The following codes present tables to answer the questions I put forward in the 
         SUM(sales_amount)AS total_sales_amount, 
         SUM(sales_qty) AS total_sales_qty
     FROM transactions
-    GROUP BY customer_code, YEAR(order_date)
-    ORDER BY customer_code;
+    GROUP BY 
+        customer_code, YEAR(order_date)
+    ORDER BY 
+        customer_code;
     ```
 
 - Count transaction times every year for each customer
@@ -197,9 +199,12 @@ The following codes present tables to answer the questions I put forward in the 
         YEAR(t.order_date) AS year, 
         COUNT(*) AS transaction_times
     FROM transactions AS t
-    LEFT JOIN customers AS c ON c.customer_code = t.customer_code
-    GROUP BY t.customer_code, YEAR(t.order_date)
-    ORDER BY c.custmer_name;
+    LEFT JOIN 
+        customers AS c ON c.customer_code = t.customer_code
+    GROUP BY 
+        t.customer_code, YEAR(t.order_date)
+    ORDER BY 
+        c.custmer_name;
     ```
 
 - Count the total number of customers every year
@@ -209,7 +214,8 @@ The following codes present tables to answer the questions I put forward in the 
         YEAR(order_date) AS year, 
         COUNT(*) AS transaction_times
     FROM transactions
-    GROUP BY YEAR(order_date);
+    GROUP BY 
+        YEAR(order_date);
     ```
 
 ## Data Cleaning & ETL (Extract, Transform, Load)
@@ -241,5 +247,4 @@ The following codes present tables to answer the questions I put forward in the 
 ## References
 https://codebasics.io/panel/webinars/purchases
 
-https://www.coursera.org/professional-certificates/google-business-intelligence 
----
+https://www.coursera.org/professional-certificates/google-business-intelligence
