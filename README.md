@@ -11,12 +11,12 @@
     - [Data Examing](#data-examing)
     - [Data Quality Report](#data-quality-report)
     - [Data Analysis](#data-analysis)
-- [Data Cleaning & ETL](#data-cleaning--etl-extract-transform-load)
+- [ETL](#etl-extract-transform-load)
 - [Data Modeling](#data-modeling)
-- [DAX: Metrics Build](#dashboard)
-- [Dashboard](#Dashboard)
-- [Report](#Report)
-- [References](#References)
+- [DAX: Metrics Build](#dax-metrics-build)
+- [Dashboard](#dashboard)
+- [Report](#report)
+- [References](#references)
 
 ## Technologies
 
@@ -144,7 +144,7 @@ First, I used MySQL to get a general view of the whole database and generate the
 
     Suggestion: Data transformation. Re-calculate the sales amount according to `INR` to unify the currency, and correct the typos
 
-- Negative values in sales amount
+- Negative values in `sales_amount`
 
     Column `sales_amount` in table `transaction` contains negative values, which are incorrect
 
@@ -154,9 +154,9 @@ First, I used MySQL to get a general view of the whole database and generate the
 
     The database only contains data from Oct 2017 to June 2020
 
-    Suggestions: Gather more information about Year 2017 and 2020 or analyze the existing data, but ensure to consider the factor of imcomplete data
+    Suggestions: Gather more data in Year 2017 and 2020 or analyze the existing data, but ensure to consider the factor of imcomplete data
 
-- Redundant data in market names
+- Redundant data in `market_names`
 
     Table `markets` include redundant market information `New York` and `Paris` which will not be considered in this analysis
 
@@ -164,7 +164,7 @@ First, I used MySQL to get a general view of the whole database and generate the
 
 ### Data Analysis
 
-The following codes present tables to answer the questions I put forward in the section [Business Inteligence](#the-solution)
+The following codes present tables to answer the questions I put forward in the section [Business Intelligence](#the-solution)
 
 - Check the yearly total revenue and sales quantity for each customer
 
@@ -208,19 +208,46 @@ The following codes present tables to answer the questions I put forward in the 
         YEAR(order_date);
     ```
 
-## Data Cleaning & ETL (Extract, Transform, Load)
+## ETL (Extract, Transform, Load)
 
-- Data Loading
+In this step, data is extracted from SQL server, then is transformed with Power Query, and finally is is loaded to Power BI model. Based on the data quality report, the following transformations were implemented.
 
-    Connect the MySQL server to the Power BI desktop, and load database
+- Correct the typos `USD ` and `INR `
 
-- Data Cleaning & Transformation
+    ```
+    /* Clean the text */
+    = Table.TransformColumns(#"Removed Errors",{{"currency", Text.Clean, type text}})
+    ```
 
-    According to the data quality report, transform the tables with Power Query
+- Calculate the sales amount in `INR`
 
-    `hh`
+    ```
+    /* Creat a conditional column 'USD sales amount' where shows the USD sales amounts as original numbers, and INR sales amounts as 0 */
+    = Table.AddColumn(#"Cleaned Text", "USD_sales_amount", each if [currency] = "USD" then [sales_amount] else 0)
+
+    /* Multiply the new column by the currency ratio, 83.3 */
+    = Table.AddColumn(#"Added Conditional Column", "INR_sales_amount", each [USD_sales_amount]*83.3)
+
+    /* Create the conditional column which contains the correct INR sales amount*/
+    = Table.AddColumn(#"Added Custom", "sales_amount_updated", each if [currency] = "INR" then [sales_amount] else if [currency] = "USD" then [INR sales amount] else null)
+    ```
+
+- Delete the non-positive values in `sales_amount`
+
+    ```
+    = Table.SelectRows(#"Renamed Columns", each [sales_amount] >= 0)
+    ```
+
+- Delete the redundant values in `market_name`
+
+    ```
+    /* Delete the markets names of New York and Paris */
+    = Table.SelectRows(#"Changed Type1", each ([markets_name] <> "New York" and [markets_name] <> "Paris"))
+    ```
 
 ## Data Modeling
+
+![Data Modeling](images/model.png)
 
 ## DAX: Metrics Build
 
