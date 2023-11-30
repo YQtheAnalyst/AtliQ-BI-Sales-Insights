@@ -3,23 +3,14 @@
 ## Table of Contents:
 
 - [Technologies](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Technologies-)
-
 - [Business Intelligence](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Business-Intelligence-)
-
 - [Project Planning](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Project-Planning-)
-
 - [Data Examing & Data Quality Report](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#MySQL:-Data-Examing-&-Data-Quality-Report-)
-
 - [Descriptive Analysis](https://github.com/yogeshkasar778/Sales_insights_of_data_analysis-AtliQ_Hardware/edit/main/README.md#Descriptive-Analysis)
-
 - [Data Modeling](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Data-Modelling-)
-
 - [DAX: Metrics Build](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#DAX:-Metrics-Build-)
-
 - [Dashboard](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Dashboard-)
-
 - [Report](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Report-)
-
 - [References](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#References-)
 
 ## Technologies
@@ -41,9 +32,9 @@ AtliQ Hardware is a company which supplies computer hardware and peripherals to 
 
 The company is experiencing sales decrease in recent years. The sales director consults with the BI team to consider how to approach two concerns:
 
-- How is the sales performance based on history records?
+    - How is the sales performance based on history records?
 
-- Why the company has sales decrease in recent years?
+    - Why the company has sales decrease in recent years?
 
 However, these stakeholders currently don't have metrics in place to specifically measure the sales performance or strategies, and this is where I will start to do my work.
 
@@ -51,9 +42,9 @@ However, these stakeholders currently don't have metrics in place to specificall
 
 In order to address the stakeholder's needs, I gathered data from [database](https://codebasics.io/resources/sales-insights-data-analysis-project) and decided what data they have and how it's being used. I found that the following metrics have already been applied:
 
-- Sales quantity
+    - Sales quantity
 
-- Revenue
+    - Revenue
 
 By comparing the existing metrics, the company can understand the sales insights well. However, I would like to consider more metrics about customer loyalty to better understand customer behaviour in the company. The questions I put forward to help myself think further:
 
