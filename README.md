@@ -1,8 +1,8 @@
 #  Product Sales Insight - AtliQ Hardware
 
 ## Table of Contents
-- [Technologies](https://github.com/YQtheAnalyst/Sales-Insights#technologies)
-- [Business Intelligence](https://github.com/YQtheAnalyst/Sales-Insights#business-intelligence)
+- [Technologies](#technologies)
+- [Business Intelligence](business-intelligence)
 - [Project Planning](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#Project-Planning)
 - [Data Examing & Data Quality Report](https://github.com/YQtheAnalyst/Sales-Insights#data-examing--data-quality-report)
 - [Descriptive Analysis](https://github.com/YQtheAnalyst/Sales-Insights#descriptive-analysis)
@@ -27,7 +27,7 @@
 
 ## Business Intelligence
 
-    AtliQ Hardware is a company which supplies computer hardware and peripherals to many of clients. Sales directors at this company has amounts of customer transaction data to manage, and that's where the problem comes in!
+AtliQ Hardware is a company which supplies computer hardware and peripherals to many of clients. Sales directors at this company has amounts of customer transaction data to manage, and that's where the problem comes in!
 
 - ### The problem
 
