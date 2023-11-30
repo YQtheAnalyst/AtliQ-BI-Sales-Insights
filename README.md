@@ -60,24 +60,7 @@ AtliQ Hardware is a company which supplies computer hardware and peripherals to 
 
 ## Project Planning
 
- #### AIMS Grid
-**1. Purpose** To unlock sales insights that are not visible before for the sales them for decision support and automate them to reduced manual time spent in data gathering. To find out if customer behaviour influences the sales performance.
-     
-**2. Stakeholders** 
-- Sales Director
-- Marketing Team 
-- Customer Service Team
-- Data and Analytics Team
-- IT 
-     
-**3. End result** An automated dashboard providing quick and latest sights in order to support Data driven decision making.
-     
-**4. Success Criteria**
-- Dahboard uncovering sales order insights with latest data available
-- Dashboard uncovering the customer behaviour
-- Sales team able to take better decisions and prove 10% cost saving of total spend.
-- Sales analysis stop data gathering manually in order to save 20% business time andreinvest it value added activity.
-
+![AIM Grid](images/aims.png)
 
 ## Data Examing & Data Quality Report
 
