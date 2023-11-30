@@ -3,9 +3,14 @@
 ## Table of Contents
 - [Technologies](#technologies)
 - [Business Intelligence](#business-intelligence)
+    - [Problem](#the-problem)
+    - [Solution](#the-solution)
+    - [Results](#results)
 - [Project Planning](#Project-Planning)
-- [Data Examing & Data Quality Report](#data-examing--data-quality-report)
-- [Descriptive Analysis](#descriptive-analysis)
+- [Data Preprocessing](#data-preprocessing)
+    - [Data Examing](#data-examing)
+    - [Data Quality Report](#data-quality-report)
+    - [Data Analysis](#data-analysis)
 - [Data Cleaning & ETL](#data-cleaning--etl-extract-transform-load)
 - [Data Modeling](#data-modeling)
 - [DAX: Metrics Build](#dashboard)
@@ -62,7 +67,9 @@ AtliQ Hardware is a company which supplies computer hardware and peripherals to 
 
 ![AIM Grid](images/aims.png)
 
-## Data Examing & Data Quality Report
+Reference: [@codebasics](https://www.youtube.com/watch?v=9QiZ0-HZG_A&list=PLeo1K3hjS3uva8pk1FI3iK9kCOKQdz1I9&index=2&ab_channel=codebasics)
+
+## Data Preprocessing
 
 First, I used MySQL to get a general view of the whole database and generate the data quality report for reference. The key points I will be focusing on include data types, count of rows, entries of categorical values, range of numerical values, incorrect values, null values, and so on.
 
@@ -155,7 +162,7 @@ First, I used MySQL to get a general view of the whole database and generate the
 
     Suggestions: Delete the rows
 
-## Descriptive Analysis
+### Data Analysis
 
 The following codes present tables to answer the questions I put forward in the section [Business Inteligence](#the-solution)
 
