@@ -1,19 +1,217 @@
-# Sales-Insights
-### Abstract
-MatCore Hardware (Rename) is a company which supplies computer hardware in India. The sales director, Alex (Rename), faces challenges of tracking the market sales in this dynamically growing market. The information he has is [sales database](https://codebasics.io/resources/sales-insights-data-analysis-project) with massive numbers, which contain information related to transactions, customers, markets, products and dates. Therefore, he approaches the data analyst team with the requirements of learning the business insights in different marketing areas -- North, South and Central India.
+#  Product Sales Insight - AtliQ Hardware
 
-This project aims to process raw data, visualize the key information to show business insights in different marketing zones, and generate a report to support decision-making for the sales director in MatCore. The main tools utilized are SQL and Power BI.
+## Table of Contents:
 
-Three performance metrics are used to measure the sales performance: Revenue, Sales Growth, and Average Revenue / Average Sales Amount per zone. The following questions can be used to guide the project:
+- [Technologies](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Technologies-)
 
-- Which marketing zone has the highest revenue?
+- [Business Intelligence](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Business-Intelligence-)
 
-- Which customers contribute to the highest revenue in different zones?
+- [Project Planning](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Project-Planning-)
 
-- What is the monthly sales growth from 2017 to 2022?
+- [Data Examing & Data Quality Report](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#MySQL:-Data-Examing-&-Data-Quality-Report-)
 
-- What is the average revenue and average sales amount per zone? What can you learn about it related to customer behaviour?
+- [Descriptive Analysis](https://github.com/yogeshkasar778/Sales_insights_of_data_analysis-AtliQ_Hardware/edit/main/README.md#Descriptive-Analysis)
 
-Key techniques include data cleaning, data wrangling, and data visualization.
+- [Data Modeling](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Data-Modelling-)
 
-One risk and three opportunities and corresponding suggestions are present after analyzing the dashboard. The risk focuses on the decrease in total revenue. The opportunities focus on widening the customer and product types, high monthly increases in certain periods, and insights on enlarging customer base and loyalty. 
+- [DAX: Metrics Build](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#DAX:-Metrics-Build-)
+
+- [Dashboard](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Dashboard-)
+
+- [Report](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Report-)
+
+- [References](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#References-)
+
+## Technologies
+
+1. MySQL: Data Analysis
+
+2. Microsoft Power BI: ETL (Extract, Transformation, and Load), Data Visualiztion
+
+3. Power Query Editor
+
+4. DAX Language 
+
+5. Business Intelligence: Problem-solving, Report generation
+
+## Business Intelligence
+AtliQ Hardware is a company which supplies computer hardware and peripherals to many of clients. Sales directors at this company has amounts of customer transaction data to manage, and that's where the problem comes in!
+
+- ### The problem
+
+The company is experiencing sales decrease in recent years. The sales director consults with the BI team to consider how to approach two concerns:
+
+- How is the sales performance based on history records?
+
+- Why the company has sales decrease in recent years?
+
+However, these stakeholders currently don't have metrics in place to specifically measure the sales performance or strategies, and this is where I will start to do my work.
+
+- ### The solution
+
+In order to address the stakeholder's needs, I gathered data from [database](https://codebasics.io/resources/sales-insights-data-analysis-project) and decided what data they have and how it's being used. I found that the following metrics have already been applied:
+
+- Sales quantity
+
+- Revenue
+
+By comparing the existing metrics, the company can understand the sales insights well. However, I would like to consider more metrics about customer loyalty to better understand customer behaviour in the company. The questions I put forward to help myself think further:
+
+- How much revenue / How many transactions does each customer contribute?
+
+- How many customers will repeat purchasing / does the company has lost?
+
+These metrics help company to better understand and explore the resaons for sales decrease behind the customer behaviour. Thus, I am able to gather necessary information in the form of dashboards for stakeholders to monitor sales performance. I then organize this data within the database systems and deliver it to new tables that report the results for stakeholders to consider as they strategize how to increase sales performance.
+
+- ### Results
+
+
+## Project Planning
+
+ - #### AIMS Grid -
+     **1. Purpose -** To unlock sales insights that are not visible before for the sales them for decision support and automate them to reduced manual time spent in data gathering. To find out if customer behaviour influences the sales performance.
+     
+     **2. Stakeholders :-** 
+     - Sales Director
+     - Marketing Team 
+     - Customer Service Team
+     - Data and Analytics Team
+     - IT 
+     
+     **3. End result :-** An automated dashboard providing quick and latest sights in order to support Data driven decision making.
+     
+     **4. Success Criteria :-**
+     - Dahboard uncovering sales order insights with latest data available
+     - Dashboard uncovering the customer behaviour
+     - Sales team able to take better decisions and prove 10% cost saving of total spend.
+     - Sales analysis stop data gathering manually in order to save 20% business time andreinvest it value added activity.
+
+
+## Data Examing & Data Quality Report
+
+First, I will use MySQL to get a general view of the whole database and generate the data quality report for reference. The key points I will be focusing on include data types, count of rows, entries of categorical values, range of numerical values, incorrect values, null values, and so on.
+
+- Data examing
+
+    First, Import Data to MySQL workbench. The following codes only present the commands I performed for the table "transactions" in the database. There are totally 5 tables and the simiar commands will be performed. For the details please refer to [this file]
+
+    Check the data types and Null values for tables
+   
+     `USE sales;`
+
+     `DESCRIBE transactions;`
+
+     `SELECT * FROM markets WHERE zone = '';`
+
+    Check the counts of the rows for tables
+
+    `SELECT COUNT(*) FROM transactions;`
+
+    Check data integrity for categorical columns
+
+    `SELECT COUNT(DISTINCT product_code) FROM transactions;`
+
+    `SELECT COUNT(DISTINCT product_code) FROM products;`
+
+    Check distinct values for categorical column
+
+    `SELECT DISTINCT currency FROM transactions;`
+
+    Checked the time period for DATE column
+
+    `SELECT MIN(order_date), MAX(order_date) FROM transactions;`
+
+    Check data range for numerical columns
+
+    `SELECT COUNT(sales_amount) FROM transactions WHERE sales_amount <= 0;`
+
+- Data quality report
+
+    1. Lack of data in "product_code"
+
+    I found there are 279 product codes in "product" reference table whilst 339 in "transaction" table. The null value will be generated if I try to JOIN two tables in the future
+
+    Suggestion: Gather more information for "product" reference table to ensure data integrity or remove the null product in the following analysis
+
+    2. Different currecies "INR" and "USD"
+
+    Column "Currency" contains two different currencies, "INR" and "USD". It also contains typos, "INR " and "USD "
+
+    Suggestion: Data transformation. Re-calculate the sales amount according to "INR" to unify the currency, and correct the typos
+
+    3. Negative values in sales amount
+
+    Column "sales_amount" in table "transaction" contains negative values, which are incorrect
+
+    Suggestions: Delete the rows with negative sales amounts
+
+    4. Lack of data in Year 2017 and 2020
+
+    The database only contains data from Oct 2017 to June 2020
+
+    Suggestions: Gather more information about Year 2017 and 2020 or analyze the existing data, but ensure to consider the factor of imcomplete data
+
+    5. Redundant data in market names
+
+    Table "markets" include redundant market information "New York" and "Paris" which will not be considered in this analysis
+
+    Suggestions: Delete the rows
+
+## Descriptive Analysis
+
+- Descriptive analysis
+
+    The following codes present tables to answer the questions I put forward in the section "Business Inteligence, the solution". Further analysis related to product types and markets can be accessed in [this file]
+
+    Check the yearly total revenue and sales quantity for each customer
+
+    `SELECT customer_code, YEAR(order_date), SUM(sales_amount), SUM(sales_qty)` 
+    `FROM transactions`
+    `GROUP BY customer_code, YEAR(order_date)`
+    `ORDER BY customer_code;`
+
+    Count transaction times every year for each customer
+
+    `SELECT c.custmer_name, YEAR(t.order_date) AS year, COUNT(*) AS transaction_times`
+    `FROM transactions AS t`
+    `LEFT JOIN customers AS c ON c.customer_code = t.customer_code`
+    `GROUP BY t.customer_code, YEAR(t.order_date)`
+    `ORDER BY c.custmer_name;`
+
+    Count the total number of customers every year
+
+    `SELECT YEAR(order_date) AS year, COUNT(*) AS transaction_times`
+    `FROM transactions`
+    `GROUP BY YEAR(order_date);`
+
+## Data Cleaning & ETL (Extract, Transform, Load)
+
+ - Data Loading
+
+    Connect the MySQL server to the Power BI desktop, and load database
+
+- Data Cleaning & Transformation
+
+    According to the data quality report, transform the tables with Power Query
+
+    `hh`
+
+## Data Modeling
+
+## DAX: Metrics Build
+
+    - Revenue
+    - Sales quanity
+    - Repeat Purchase Rate = ``
+    - Customer Churn Rate = ``
+    - Customer Loyalty Rate = ``
+  
+## Dashboard
+
+## Report
+
+## References
+https://codebasics.io/panel/webinars/purchases
+
+https://www.coursera.org/professional-certificates/google-business-intelligence 
+---
