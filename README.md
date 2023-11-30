@@ -259,6 +259,8 @@ In this step, data is extracted from SQL server, then is transformed with Power 
   
 ## Dashboard
 
+![Sales Insight](images/insight.png)
+
 ## Report
 
 ## References
