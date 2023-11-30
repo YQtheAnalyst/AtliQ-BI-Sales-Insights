@@ -89,8 +89,11 @@ First, I used MySQL to get a general view of the whole database and generate the
    
     ```
     USE sales;
+
     DESCRIBE transactions;
-    SELECT * FROM markets WHERE zone = '';
+
+    SELECT * FROM markets 
+    WHERE zone = '';
     ```
 
 - Check the counts of the rows for tables
@@ -102,26 +105,39 @@ First, I used MySQL to get a general view of the whole database and generate the
  - Check data integrity for categorical columns
     
     ```
-    SELECT COUNT(DISTINCT product_code) FROM transactions;
-    SELECT COUNT(DISTINCT product_code) FROM products;
+    SELECT 
+        COUNT(DISTINCT product_code) AS products_in_transactions
+    FROM transactions;
+
+    SELECT 
+        COUNT(DISTINCT product_code) AS products_listed
+    FROM products;
     ```
 
 - Check distinct values for categorical column
 
     ```
-    SELECT DISTINCT currency FROM transactions;
+    SELECT 
+        DISTINCT currency 
+    FROM transactions;
     ```
 
 - Checked the time period for DATE column
 
     ```
-    SELECT MIN(order_date), MAX(order_date) FROM transactions;
+    SELECT 
+        MIN(order_date), 
+        MAX(order_date) 
+    FROM transactions;
     ```
 
 - Check data range for numerical columns
 
     ```
-    SELECT COUNT(sales_amount) FROM transactions WHERE sales_amount <= 0;
+    SELECT 
+        COUNT(sales_amount)
+    FROM transactions 
+    WHERE sales_amount <= 0;
     ```
 
 ### Data Quality Report
@@ -130,21 +146,21 @@ First, I used MySQL to get a general view of the whole database and generate the
 
     I found there are 279 product codes in `product` reference table whilst 339 in `transaction` table. The null value will be generated if I try to JOIN two tables in the future
 
-    Suggestion: Gather more information for "product" reference table to ensure data integrity or remove the null product in the following analysis
+    Suggestion: Gather more information for `product` reference table to ensure data integrity or remove the null product in the following analysis
 
-- Different currecies "INR" and "USD"
+- Different currecies `INR` and `USD`
 
-    Column "Currency" contains two different currencies, "INR" and "USD". It also contains typos, "INR " and "USD "
+    Column `Currency` contains two different currencies, `INR` and `USD`. It also contains typos, `INR ` and `USD `
 
-    Suggestion: Data transformation. Re-calculate the sales amount according to "INR" to unify the currency, and correct the typos
+    Suggestion: Data transformation. Re-calculate the sales amount according to `INR` to unify the currency, and correct the typos
 
 - Negative values in sales amount
 
-    Column "sales_amount" in table "transaction" contains negative values, which are incorrect
+    Column `sales_amount` in table `transaction` contains negative values, which are incorrect
 
     Suggestions: Delete the rows with negative sales amounts
 
-- Lack of data in Year 2017 and 2020
+- Lack of data in Year `2017` and `2020`
 
     The database only contains data from Oct 2017 to June 2020
 
@@ -152,18 +168,22 @@ First, I used MySQL to get a general view of the whole database and generate the
 
 - Redundant data in market names
 
-    Table "markets" include redundant market information "New York" and "Paris" which will not be considered in this analysis
+    Table `markets` include redundant market information `New York` and `Paris` which will not be considered in this analysis
 
     Suggestions: Delete the rows
 
 ## Descriptive Analysis
 
-The following codes present tables to answer the questions I put forward in the section "Business Inteligence, the solution".
+The following codes present tables to answer the questions I put forward in the section [Business Inteligence](#the-solution)
 
 - Check the yearly total revenue and sales quantity for each customer
 
     ```
-    SELECT customer_code, YEAR(order_date), SUM(sales_amount), SUM(sales_qty)
+    SELECT 
+        customer_code, 
+        YEAR(order_date) AS year, 
+        SUM(sales_amount)AS total_sales_amount, 
+        SUM(sales_qty) AS total_sales_qty
     FROM transactions
     GROUP BY customer_code, YEAR(order_date)
     ORDER BY customer_code;
@@ -172,7 +192,10 @@ The following codes present tables to answer the questions I put forward in the 
 - Count transaction times every year for each customer
 
     ```
-    SELECT c.custmer_name, YEAR(t.order_date) AS year, COUNT(*) AS transaction_times
+    SELECT 
+        c.custmer_name, 
+        YEAR(t.order_date) AS year, 
+        COUNT(*) AS transaction_times
     FROM transactions AS t
     LEFT JOIN customers AS c ON c.customer_code = t.customer_code
     GROUP BY t.customer_code, YEAR(t.order_date)
@@ -182,7 +205,9 @@ The following codes present tables to answer the questions I put forward in the 
 - Count the total number of customers every year
 
     ```
-    SELECT YEAR(order_date) AS year, COUNT(*) AS transaction_times
+    SELECT 
+        YEAR(order_date) AS year, 
+        COUNT(*) AS transaction_times
     FROM transactions
     GROUP BY YEAR(order_date);
     ```
