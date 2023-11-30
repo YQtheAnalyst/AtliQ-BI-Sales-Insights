@@ -87,39 +87,48 @@ First, I used MySQL to get a general view of the whole database and generate the
 
 - Check the data types and Null values for tables
    
-    `USE sales;`
-
-    `DESCRIBE transactions;`
-
-    `SELECT * FROM markets WHERE zone = '';`
+    ```
+    USE sales;
+    DESCRIBE transactions;
+    SELECT * FROM markets WHERE zone = '';
+    ```
 
 - Check the counts of the rows for tables
 
-    `SELECT COUNT(*) FROM transactions;`
+    ```
+    SELECT COUNT(*) FROM transactions;
+    ```
 
  - Check data integrity for categorical columns
-
-    `SELECT COUNT(DISTINCT product_code) FROM transactions;`
-
-    `SELECT COUNT(DISTINCT product_code) FROM products;`
+    
+    ```
+    SELECT COUNT(DISTINCT product_code) FROM transactions;
+    SELECT COUNT(DISTINCT product_code) FROM products;
+    ```
 
 - Check distinct values for categorical column
 
-    `SELECT DISTINCT currency FROM transactions;`
+    ```
+    SELECT DISTINCT currency FROM transactions;
+    ```
 
 - Checked the time period for DATE column
 
-    `SELECT MIN(order_date), MAX(order_date) FROM transactions;`
+    ```
+    SELECT MIN(order_date), MAX(order_date) FROM transactions;
+    ```
 
 - Check data range for numerical columns
 
-    `SELECT COUNT(sales_amount) FROM transactions WHERE sales_amount <= 0;`
+    ```
+    SELECT COUNT(sales_amount) FROM transactions WHERE sales_amount <= 0;
+    ```
 
 ### Data Quality Report
 
-- Lack of data in "product_code"
+- Lack of data in `product_code`
 
-    I found there are 279 product codes in "product" reference table whilst 339 in "transaction" table. The null value will be generated if I try to JOIN two tables in the future
+    I found there are 279 product codes in `product` reference table whilst 339 in `transaction` table. The null value will be generated if I try to JOIN two tables in the future
 
     Suggestion: Gather more information for "product" reference table to ensure data integrity or remove the null product in the following analysis
 
@@ -162,17 +171,21 @@ The following codes present tables to answer the questions I put forward in the 
 
 - Count transaction times every year for each customer
 
-    `SELECT c.custmer_name, YEAR(t.order_date) AS year, COUNT(*) AS transaction_times`
-    `FROM transactions AS t`
-    `LEFT JOIN customers AS c ON c.customer_code = t.customer_code`
-    `GROUP BY t.customer_code, YEAR(t.order_date)`
-    `ORDER BY c.custmer_name;`
+    ```
+    SELECT c.custmer_name, YEAR(t.order_date) AS year, COUNT(*) AS transaction_times
+    FROM transactions AS t
+    LEFT JOIN customers AS c ON c.customer_code = t.customer_code
+    GROUP BY t.customer_code, YEAR(t.order_date)
+    ORDER BY c.custmer_name;
+    ```
 
 - Count the total number of customers every year
 
-    `SELECT YEAR(order_date) AS year, COUNT(*) AS transaction_times`
-    `FROM transactions`
-    `GROUP BY YEAR(order_date);`
+    ```
+    SELECT YEAR(order_date) AS year, COUNT(*) AS transaction_times
+    FROM transactions
+    GROUP BY YEAR(order_date);
+    ```
 
 ## Data Cleaning & ETL (Extract, Transform, Load)
 
