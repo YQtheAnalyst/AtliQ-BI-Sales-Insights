@@ -1,92 +1,93 @@
 #  Product Sales Insight - AtliQ Hardware
 
-## Table of Contents:
-
-- [Technologies](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Technologies-)
-- [Business Intelligence](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Business-Intelligence-)
-- [Project Planning](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Project-Planning-)
-- [Data Examing & Data Quality Report](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#MySQL:-Data-Examing-&-Data-Quality-Report-)
-- [Descriptive Analysis](https://github.com/yogeshkasar778/Sales_insights_of_data_analysis-AtliQ_Hardware/edit/main/README.md#Descriptive-Analysis)
-- [Data Modeling](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Data-Modelling-)
-- [DAX: Metrics Build](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#DAX:-Metrics-Build-)
-- [Dashboard](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Dashboard-)
-- [Report](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#Report-)
-- [References](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/README.md#References-)
+## Table of Contents
+- [Technologies](https://github.com/YQtheAnalyst/Sales-Insights#technologies)
+- [Business Intelligence](https://github.com/YQtheAnalyst/Sales-Insights#business-intelligence)
+- [Project Planning](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#Project-Planning)
+- [Data Examing & Data Quality Report](https://github.com/YQtheAnalyst/Sales-Insights#data-examing--data-quality-report)
+- [Descriptive Analysis](https://github.com/YQtheAnalyst/Sales-Insights#descriptive-analysis)
+-[Data Cleaning & ETL](https://github.com/YQtheAnalyst/Sales-Insights#data-cleaning--etl-extract-transform-load)
+- [Data Modeling](https://github.com/YQtheAnalyst/Sales-Insights#data-modeling)
+- [DAX: Metrics Build](https://github.com/YQtheAnalyst/Sales-Insights#dashboard)
+- [Dashboard](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#Dashboard)
+- [Report](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#Report)
+- [References](https://github.com/YQtheAnalyst/Sales-Insights/edit/main/#References-)
 
 ## Technologies
 
 1. MySQL: Data Analysis
 
-2. Microsoft Power BI: ETL (Extract, Transformation, and Load), Data Visualiztion
+2. Microsoft Power BI: ETL (Extract, Transformation, and Load), data visualiztion
 
 3. Power Query Editor
 
 4. DAX Language 
 
-5. Business Intelligence: Problem-solving, Report generation
+5. Business Intelligence: Problem-solving, report generation
 
 ## Business Intelligence
-AtliQ Hardware is a company which supplies computer hardware and peripherals to many of clients. Sales directors at this company has amounts of customer transaction data to manage, and that's where the problem comes in!
+
+    AtliQ Hardware is a company which supplies computer hardware and peripherals to many of clients. Sales directors at this company has amounts of customer transaction data to manage, and that's where the problem comes in!
 
 - ### The problem
 
-The company is experiencing sales decrease in recent years. The sales director consults with the BI team to consider how to approach two concerns:
+    The company is experiencing sales decrease in recent years. The sales director consults with the BI team to consider how to approach two concerns:
 
     - How is the sales performance based on history records?
 
     - Why the company has sales decrease in recent years?
 
-However, these stakeholders currently don't have metrics in place to specifically measure the sales performance or strategies, and this is where I will start to do my work.
+    However, these stakeholders currently don't have metrics in place to specifically measure the sales performance or strategies, and this is where I will start to do my work.
 
 - ### The solution
 
-In order to address the stakeholder's needs, I gathered data from [database](https://codebasics.io/resources/sales-insights-data-analysis-project) and decided what data they have and how it's being used. I found that the following metrics have already been applied:
+    In order to address the stakeholder's needs, I gathered data from [database](https://codebasics.io/resources/sales-insights-data-analysis-project) and decided what data they have and how it's being used. I found that the following metrics have already been applied:
 
     - Sales quantity
 
     - Revenue
 
-By comparing the existing metrics, the company can understand the sales insights well. However, I would like to consider more metrics about customer loyalty to better understand customer behaviour in the company. The questions I put forward to help myself think further:
+    By comparing the existing metrics, the company can understand the sales insights well. However, I would like to consider more metrics about customer loyalty to better understand customer behaviour in the company. The questions I put forward to help myself think further:
 
-- How much revenue / How many transactions does each customer contribute?
+    - How much revenue / How many transactions does each customer contribute?
 
-- How many customers will repeat purchasing / does the company has lost?
+    - How many customers will repeat purchasing / does the company has lost?
 
-These metrics help company to better understand and explore the resaons for sales decrease behind the customer behaviour. Thus, I am able to gather necessary information in the form of dashboards for stakeholders to monitor sales performance. I then organize this data within the database systems and deliver it to new tables that report the results for stakeholders to consider as they strategize how to increase sales performance.
+    These metrics help company to better understand and explore the resaons for sales decrease behind the customer behaviour. I then organize this data within the database systems and deliver it to new tables that report the results for stakeholders to consider as they strategize how to increase sales performance.
 
 - ### Results
 
 
 ## Project Planning
 
- - #### AIMS Grid -
-     **1. Purpose -** To unlock sales insights that are not visible before for the sales them for decision support and automate them to reduced manual time spent in data gathering. To find out if customer behaviour influences the sales performance.
+ #### AIMS Grid
+**1. Purpose** To unlock sales insights that are not visible before for the sales them for decision support and automate them to reduced manual time spent in data gathering. To find out if customer behaviour influences the sales performance.
      
-     **2. Stakeholders :-** 
-     - Sales Director
-     - Marketing Team 
-     - Customer Service Team
-     - Data and Analytics Team
-     - IT 
+**2. Stakeholders** 
+- Sales Director
+- Marketing Team 
+- Customer Service Team
+- Data and Analytics Team
+- IT 
      
-     **3. End result :-** An automated dashboard providing quick and latest sights in order to support Data driven decision making.
+**3. End result** An automated dashboard providing quick and latest sights in order to support Data driven decision making.
      
-     **4. Success Criteria :-**
-     - Dahboard uncovering sales order insights with latest data available
-     - Dashboard uncovering the customer behaviour
-     - Sales team able to take better decisions and prove 10% cost saving of total spend.
-     - Sales analysis stop data gathering manually in order to save 20% business time andreinvest it value added activity.
+**4. Success Criteria**
+- Dahboard uncovering sales order insights with latest data available
+- Dashboard uncovering the customer behaviour
+- Sales team able to take better decisions and prove 10% cost saving of total spend.
+- Sales analysis stop data gathering manually in order to save 20% business time andreinvest it value added activity.
 
 
 ## Data Examing & Data Quality Report
 
-First, I will use MySQL to get a general view of the whole database and generate the data quality report for reference. The key points I will be focusing on include data types, count of rows, entries of categorical values, range of numerical values, incorrect values, null values, and so on.
+First, I used MySQL to get a general view of the whole database and generate the data quality report for reference. The key points I will be focusing on include data types, count of rows, entries of categorical values, range of numerical values, incorrect values, null values, and so on.
 
-- Data examing
+- Data Examing
 
-    First, Import Data to MySQL workbench. The following codes only present the commands I performed for the table "transactions" in the database. There are totally 5 tables and the simiar commands will be performed. For the details please refer to [this file]
+    For the details please refer to [this file]
 
-    Check the data types and Null values for tables
+    - Check the data types and Null values for tables
    
      `USE sales;`
 
@@ -94,55 +95,55 @@ First, I will use MySQL to get a general view of the whole database and generate
 
      `SELECT * FROM markets WHERE zone = '';`
 
-    Check the counts of the rows for tables
+    - Check the counts of the rows for tables
 
     `SELECT COUNT(*) FROM transactions;`
 
-    Check data integrity for categorical columns
+    - Check data integrity for categorical columns
 
     `SELECT COUNT(DISTINCT product_code) FROM transactions;`
 
     `SELECT COUNT(DISTINCT product_code) FROM products;`
 
-    Check distinct values for categorical column
+    - Check distinct values for categorical column
 
     `SELECT DISTINCT currency FROM transactions;`
 
-    Checked the time period for DATE column
+    - Checked the time period for DATE column
 
     `SELECT MIN(order_date), MAX(order_date) FROM transactions;`
 
-    Check data range for numerical columns
+    - Check data range for numerical columns
 
     `SELECT COUNT(sales_amount) FROM transactions WHERE sales_amount <= 0;`
 
-- Data quality report
+- Data Quality Report
 
-    1. Lack of data in "product_code"
+    - Lack of data in "product_code"
 
     I found there are 279 product codes in "product" reference table whilst 339 in "transaction" table. The null value will be generated if I try to JOIN two tables in the future
 
     Suggestion: Gather more information for "product" reference table to ensure data integrity or remove the null product in the following analysis
 
-    2. Different currecies "INR" and "USD"
+    - Different currecies "INR" and "USD"
 
     Column "Currency" contains two different currencies, "INR" and "USD". It also contains typos, "INR " and "USD "
 
     Suggestion: Data transformation. Re-calculate the sales amount according to "INR" to unify the currency, and correct the typos
 
-    3. Negative values in sales amount
+    - Negative values in sales amount
 
     Column "sales_amount" in table "transaction" contains negative values, which are incorrect
 
     Suggestions: Delete the rows with negative sales amounts
 
-    4. Lack of data in Year 2017 and 2020
+    - Lack of data in Year 2017 and 2020
 
     The database only contains data from Oct 2017 to June 2020
 
     Suggestions: Gather more information about Year 2017 and 2020 or analyze the existing data, but ensure to consider the factor of imcomplete data
 
-    5. Redundant data in market names
+    - Redundant data in market names
 
     Table "markets" include redundant market information "New York" and "Paris" which will not be considered in this analysis
 
