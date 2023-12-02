@@ -1,11 +1,5 @@
 -- ------------------------DATA CLEANING ----------------------------
 
--- There are 4 tasks to do in data cleaning part, which are:
--- 1. Identify and delete the rows where sales_amount are less than 0
--- 2. Fix the typos of column names
--- 3. Change all sales_amount to INR currency
--- 4. Delete the Null values in Markets table
-
 -- ------------------------Task 1------------------------------------
 
 -- Identify the rows where sales_amount < 0
@@ -87,25 +81,10 @@ WHERE
 
 -- -------------------------------------------------------------------
 -- ------------------------DATA WRANGLING ----------------------------
--- Building tables present 3 performance metrics
-
--- ------------------------Task 0.0------------------------------------
--- Create new column for further calculation purpose
-ALTER TABLE 
-  sales.transactions
-ADD 
-  revenue double;
-
--- Calculate Revenue = sales Quantity * Normalized Sales Amount
-UPDATE 
-  sales.transactions
-SET 
-  revenue = norm_sales_amount*sales_qty;
-
 
 -- ------------------------Task 0.1------------------------------------
--- Combine the tables with neccessary information into one
-CREATE TABLE 
+-- Combine the tables with neccessary information into one, for the convience of further analysis
+CREATE TABLE
 	all_transaction
 SELECT
 	c.customer_name,
@@ -122,7 +101,6 @@ LEFT JOIN
 LEFT JOIN 
 	sales.markets AS m ON m.markets_code = t.market_code
 ;
-
 
 -- ------------------------Task 1------------------------------------
 -- Calculate the total revenue of each zone
@@ -149,7 +127,6 @@ ORDER BY
 	revenue ASC
 ;
 
-
 -- ------------------------Task 2------------------------------------
 -- Calculate the total revenue of each zone, each customer
 SELECT
@@ -163,7 +140,6 @@ GROUP BY
 ORDER BY 
 	revenue ASC
 ;
-
 
 -- ------------------------Task 3------------------------------------
 -- Create the table calculating the total revenue of each zone for each month
@@ -194,7 +170,6 @@ GROUP BY
 	d.year, quarter
 ;
 
-
 -- ------------------------Task 4------------------------------------
 -- Create the table calculating the average sales amount / quantity of each zone
 CREATE TABLE 
@@ -212,3 +187,101 @@ LEFT JOIN
 GROUP BY
 	markets.zone
 ;
+
+
+-- ------------------ data analysis --------------------
+SELECT * FROM sales.transactions;
+
+-- check the data types of table "transactions"
+USE sales;
+
+DESCRIBE transactions;
+
+SELECT 
+	COUNT(*) 
+FROM transactions;
+
+
+-- check the listed codes and reference codes
+
+-- Product
+-- product codes: 279; products in transactions: 339
+SELECT 
+	COUNT(DISTINCT product_code) 
+FROM transactions;
+
+SELECT 
+	COUNT(DISTINCT product_code) 
+FROM products;
+
+-- Market
+-- markets codes: 17; markets in transactions: 15
+SELECT 
+	COUNT(DISTINCT market_code) 
+FROM transactions;
+
+SELECT 
+	COUNT(DISTINCT market_code) 
+FROM markets;
+
+-- Customer
+-- customer codes: 38; customers in transactions: 38
+SELECT 
+	COUNT(DISTINCT customer_code) 
+FROM transactions;
+
+SELECT 
+	COUNT(DISTINCT customer_code) 
+FROM customers;
+
+
+-- check the date range
+SELECT 
+	MIN(order_date), 
+	MAX(order_date) 
+FROM transactions;
+
+-- Select the rows where sales amount is non positive
+SELECT 
+	COUNT(sales_amount) 
+FROM transactions
+WHERE sales_amount <= 0;
+
+-- Select rows which are redundant
+SELECT * FROM markets
+WHERE zone = '';
+
+
+-- ------------------------------------------------------------------
+-- Check the yearly total revenue and sales quantity for each customer
+SELECT 
+    customer_code, 
+    YEAR(order_date) AS year, 
+    SUM(sales_amount)AS total_sales_amount, 
+    SUM(sales_qty) AS total_sales_qty
+FROM transactions
+GROUP BY 
+    customer_code, YEAR(order_date)
+ORDER BY 
+    customer_code;
+
+-- Count transaction times every year for each customer
+SELECT 
+    c.custmer_name, 
+    YEAR(t.order_date) AS year, 
+    COUNT(*) AS transaction_times
+FROM transactions AS t
+LEFT JOIN 
+    customers AS c ON c.customer_code = t.customer_code
+GROUP BY 
+    t.customer_code, YEAR(t.order_date)
+ORDER BY 
+    c.custmer_name;
+
+-- Count the total number of customers every year
+SELECT 
+    YEAR(order_date) AS year, 
+    COUNT(*) AS transaction_times
+FROM transactions
+GROUP BY 
+    YEAR(order_date);
