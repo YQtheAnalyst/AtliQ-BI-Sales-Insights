@@ -304,7 +304,7 @@ In this step, data is extracted from SQL server, then is transformed with Power 
 
 |Reason discovering for sales decrease|
 |-------------|
-|![Sales Insight](images/Delhi.png)|
+|![delhi](images/delhi.png)|
 ## Report
 
 There are two key insights I discovered to explain the reasons behind the sales decrease. The analysis focuses on the main market, `Delhi NCR`, which contributes 34.2% to total sales revenue. `Electricalsara Store` is the main customer in this market with £56M revenue and main products `prod40`, `prod102`, and `prod99`.
