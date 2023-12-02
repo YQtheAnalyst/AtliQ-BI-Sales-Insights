@@ -1,5 +1,5 @@
 #  Product Sales Insight - AtliQ Hardware
-
+![cover](images/cover.png)
 ## Table of Contents
 - [Technologies](#technologies)
 - [Abstract: Business Intelligence](#abstract-business-intelligence)
