@@ -20,15 +20,15 @@
 ## Technologies
 
 1. SQL (MySQL)
-    - Data Quality Assurance
-    - Data Cleaning
-    - Data Analysis
+- Data Quality Assurance
+- Data Cleaning
+- Data Analysis
 
 2. Microsoft Power BI: 
-    - ETL (Extract, Transformation, and Load) 
-    - Power Query Editor
-    - DAX Language
-    - Data Visualization & Storytelling
+- ETL (Extract, Transformation, and Load) 
+- Power Query Editor
+- DAX Language
+- Data Visualization & Storytelling
 
 3. Business Intelligence
 ## Abstract: Business Intelligence
