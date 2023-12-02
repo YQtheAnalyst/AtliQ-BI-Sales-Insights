@@ -2,7 +2,7 @@
 
 ## Table of Contents
 - [Technologies](#technologies)
-- [Business Intelligence](#business-intelligence)
+- [Abstract: Business Intelligence](#abstract-business-intelligence)
     - [Problem](#the-problem)
     - [Solution](#the-solution)
     - [Results](#results)
@@ -10,11 +10,11 @@
 - [Data Processing](#data-processing)
     - [Data Examing](#data-examing)
     - [Data Quality Report](#data-quality-report)
-    - [Data Analysis](#data-analysis)
+- [Data Analysis](#data-analysis)
 - [ETL](#etl-extract-transform-load)
 - [Data Modeling](#data-modeling)
 - [DAX: Metrics Build](#dax-metrics-build)
-- [Dashboard](#dashboard)
+- [Dashboards](#dashboards)
 - [Report](#report)
 - [References](#references)
 ## Technologies
@@ -28,7 +28,7 @@
 4. DAX Language 
 
 5. Business Intelligence: Problem-solving, report generation
-## Business Intelligence
+## Abstract: Business Intelligence
 
 AtliQ Hardware is a company which supplies computer hardware and peripherals to many clients. Sales directors at this company have amounts of customer transaction data to manage, and that's where the problem comes in!
 
@@ -160,8 +160,7 @@ First, I used MySQL to get a general view of the whole database and generate the
     Table `markets` include redundant market information `New York` and `Paris` which will not be considered in this analysis
 
     Suggestions: Delete the rows
-
-### Data Analysis
+## Data Analysis
 
 The following codes present tables to answer the questions I put forward in the section [Business Intelligence](#the-solution)
 
@@ -296,7 +295,7 @@ In this step, data is extracted from SQL server, then is transformed with Power 
 
     RGrowth = DIVIDE([R2020June] - [R2017Jan], [R2017Jan], 0)
     ```
-## Dashboard
+## Dashboards
 
 |Sales Insight|
 |-------------|
@@ -309,7 +308,7 @@ In this step, data is extracted from SQL server, then is transformed with Power 
 
 There are two key insights I discovered to explain the reasons behind the sales decrease. The analysis focuses on the main market, `Delhi NCR`, which contributes 34.2% to total sales revenue. `Electricalsara Store` is the main customer in this market with £56M revenue and main products `prod40`, `prod102`, and `prod99`.
 
-1. Customers' purchasing power is decreasing
+- 1. Customers' purchasing power is decreasing
 
 Purchasing power is measured by two metrics: number of transactions per customer, and sales quantity per customer. For customer `Electricalsara Store`, the first metric has decreased by 149.3% and the second one has decreased by 252.4% from Jan 2028 to June 2020.
 
@@ -317,7 +316,7 @@ To further dig into the reason for the decrease in purchasing power, I checked t
 
 Therefore, this decrease in purchasing power could be related to external reasons such as market changes to certain products.
 
-2. Customers stopped purchasing `prod99`
+- 2. Customers stopped purchasing `prod99`
 
 There are three main products, `prod40`, `prod102`, and `prod99`, and they are different product types. The sales quantity of `prod99` is twice more as the other products whilst the revenue is around half than other two. However, the purchase of this product stopped in September 2018, which generated £10M during its selling period.
 
