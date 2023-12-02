@@ -19,15 +19,18 @@
 - [References](#references)
 ## Technologies
 
-1. MySQL: Data Analysis
+1. SQL (MySQL)
+    - Data Quality Assurance
+    - Data Cleaning
+    - Data Analysis
 
-2. Microsoft Power BI: ETL (Extract, Transformation, and Load), data visualiztion
+2. Microsoft Power BI: 
+    - ETL (Extract, Transformation, and Load) 
+    - Power Query Editor
+    - DAX Language
+    - Data Visualization & Storytelling
 
-3. Power Query Editor
-
-4. DAX Language 
-
-5. Business Intelligence: Problem-solving, report generation
+3. Business Intelligence
 ## Abstract: Business Intelligence
 
 AtliQ Hardware is a company which supplies computer hardware and peripherals to many clients. Sales directors at this company have amounts of customer transaction data to manage, and that's where the problem comes in!
@@ -58,7 +61,7 @@ By comparing the existing metrics, the company can understand the sales insights
 
 - Which products contribute to the revenue most and how is their sales performance?
 
-These metrics help the company to explore the reasons for sales decrease behind the customer behaviour. I then organize this data within the database systems and load it to visualization software to generate the dashboard and report for stakeholders to consider as they strategize how to increase sales performance.
+These questions help the company to explore the reasons for sales decrease behind the customer behaviour. I then organize this data within the database systems and load it to visualization software to generate the dashboard and report for stakeholders to consider as they strategize how to increase sales performance.
 
 - ### Results
 
@@ -301,14 +304,14 @@ In this step, data is extracted from SQL server, then is transformed with Power 
 |-------------|
 |![Sales Insight](images/salesinsight.png)|
 
-|Reason discovering for sales decrease|
+|Reasons discovered for sales decrease|
 |-------------|
 |![delhi](images/delhi.png)|
 ## Report
 
 There are two key insights I discovered to explain the reasons behind the sales decrease. The analysis focuses on the main market, `Delhi NCR`, which contributes 34.2% to total sales revenue. `Electricalsara Store` is the main customer in this market with £56M revenue and main products `prod40`, `prod102`, and `prod99`.
 
-- 1. Customers' purchasing power is decreasing
+- Customers' purchasing power is decreasing
 
 Purchasing power is measured by two metrics: number of transactions per customer, and sales quantity per customer. For customer `Electricalsara Store`, the first metric has decreased by 149.3% and the second one has decreased by 252.4% from Jan 2028 to June 2020.
 
@@ -316,7 +319,7 @@ To further dig into the reason for the decrease in purchasing power, I checked t
 
 Therefore, this decrease in purchasing power could be related to external reasons such as market changes to certain products.
 
-- 2. Customers stopped purchasing `prod99`
+- Customers stopped purchasing `prod99`
 
 There are three main products, `prod40`, `prod102`, and `prod99`, and they are different product types. The sales quantity of `prod99` is twice more as the other products whilst the revenue is around half than other two. However, the purchase of this product stopped in September 2018, which generated £10M during its selling period.
 
